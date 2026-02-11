@@ -10,7 +10,7 @@ mvn -version       # Should be 3.6+
 
 ### 2. **Setup Project**
 ```bash
-cd /Users/rupeshkumar/IdeaProjects/demoblaze
+cd /Users/{user.name}/IdeaProjects/demoblaze
 ./setup.sh
 ```
 
