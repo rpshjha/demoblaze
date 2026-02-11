@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-current.dtd">
+
+<suite name="DemoBlaze Automation Suite" verbose="2" parallel="false">
+    
+    <!-- Main Test Group -->
+    <test name="DemoBlaze Complete Scenario">
+        <description>Complete end-to-end automation of DemoBlaze purchase scenario</description>
+        <classes>
+            <class name="demoblaze.tests.DemoBlazeTest">
+                <methods>
+                    <!-- Run all tests in priority order -->
+                    <include name="testCompleteDemoBlazeScenario"/>
+                    <include name="testSignUpFunctionality"/>
+                    <include name="testProductSelectionAndCart"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <!-- Listeners for reporting -->
+    <listeners>
+        <listener class-name="org.testng.reporters.TestHTMLReporter"/>
+        <listener class-name="org.testng.reporters.XMLReporter"/>
+    </listeners>
+
+</suite>

@@ -1,0 +1,72 @@
+package demoblaze.pageobjects;
+
+import demoblaze.config.Config;
+import demoblaze.utils.TestLogger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+/**
+ * HomePage - Page Object for the home page of DemoBlaze. Manages navigation to different product
+ * categories.
+ */
+public class HomePage extends BasePage {
+
+  // Locators for product categories
+  private By phonesCategoryLink = By.linkText("Phones");
+  private By laptopsCategoryLink = By.linkText("Laptops");
+  private By monitorsCategoryLink = By.linkText("Monitors");
+  private By pageTitle = By.cssSelector("h1");
+
+  public HomePage(WebDriver driver) {
+    super(driver);
+  }
+
+  /** Navigates to the home page. */
+  public void navigateToHomePage() {
+    TestLogger.testStep("Navigate to DemoBlaze home page");
+    navigateTo(Config.BASE_URL);
+    TestLogger.info("Navigated to: {}", Config.BASE_URL);
+  }
+
+  /** Verifies if home page is loaded. */
+  public boolean isHomePageLoaded() {
+    TestLogger.debug("Verifying home page is loaded");
+    return isElementDisplayed(phonesCategoryLink);
+  }
+
+  /** Clicks on Phones category. */
+  public void selectPhonesCategory() {
+    TestLogger.testStep("Select Phones category");
+    click(phonesCategoryLink);
+  }
+
+  /** Clicks on Laptops category. */
+  public void selectLaptopsCategory() {
+    TestLogger.testStep("Select Laptops category");
+    click(laptopsCategoryLink);
+  }
+
+  /** Clicks on Monitors category. */
+  public void selectMonitorsCategory() {
+    TestLogger.testStep("Select Monitors category");
+    click(monitorsCategoryLink);
+  }
+
+  /** Navigates to a specific category by name. */
+  public void navigateToCategory(String categoryName) {
+    TestLogger.testStep("Navigate to category: {}", categoryName);
+    switch (categoryName.toLowerCase()) {
+      case "phones":
+        selectPhonesCategory();
+        break;
+      case "laptops":
+        selectLaptopsCategory();
+        break;
+      case "monitors":
+        selectMonitorsCategory();
+        break;
+      default:
+        throw new IllegalArgumentException("Unknown category: " + categoryName);
+    }
+  }
+}

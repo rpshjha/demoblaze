@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="DemoBlaze PMD Rules"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>PMD Rules for DemoBlaze project - Focuses on Critical and High priority issues</description>
+
+    <!-- Best Practices - Only critical and high issues -->
+    <rule ref="category/java/bestpractices.xml">
+        <exclude name="JUnit4TestShouldUseTestAnnotation"/>
+        <exclude name="JUnit5TestShouldBePackagePrivate"/>
+        <exclude name="PreserveStackTrace"/>
+        <exclude name="UseAssertSameInsteadOfAssertTrue"/>
+        <exclude name="UseAssertTrueInsteadOfAssertEquals"/>
+        <exclude name="UseAssertEqualsInsteadOfAssertTrue"/>
+        <exclude name="UseVarargs"/>
+        <exclude name="GuardLogStatement"/>
+        <exclude name="UnusedAssignment"/>
+        <exclude name="DefaultLabelNotLastInSwitchStmt"/>
+        <exclude name="UnusedPrivateField"/>
+    </rule>
+
+    <!-- Error Prone - Critical bugs only -->
+    <rule ref="category/java/errorprone.xml">
+        <exclude name="AvoidLiteralsInIfCondition"/>
+        <exclude name="AvoidFieldNameMatchingMethodName"/>
+        <exclude name="CompareObjectsWithEquals"/>
+        <exclude name="DataflowAnomalyAnalysis"/>
+        <exclude name="UseProperClassLoader"/>
+        <exclude name="EmptyCatchBlock"/>
+        <exclude name="NullAssignment"/>
+        <exclude name="UnusedNullCheckInEquals"/>
+        <exclude name="UseLocaleWithCaseConversions"/>
+        <exclude name="TestClassWithoutTestCases"/>
+    </rule>
+
+    <!-- Performance - Only significant issues -->
+    <rule ref="category/java/performance.xml">
+        <exclude name="BigIntegerInstantiation"/>
+        <exclude name="AppendCharacterWithChar"/>
+    </rule>
+
+    <!-- Security - All security rules -->
+    <rule ref="category/java/security.xml"/>
+
+</ruleset>
