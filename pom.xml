@@ -171,6 +171,7 @@
                 <version>2.11.2</version>
                 <configuration>
                     <reportVersion>2.24.0</reportVersion>
+                    <resultsDirectory>target/allure-results</resultsDirectory>
                 </configuration>
             </plugin>
         </plugins>
