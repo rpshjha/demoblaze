@@ -17,7 +17,7 @@ public class HomePage extends BasePage {
   private By monitorsCategoryLink = By.linkText("Monitors");
   private By homeLink = By.xpath("//a[@href='index.html']");
   private By pageTitle = By.cssSelector("h1");
-  private By productsContainer = By.id("tbodyid");
+  private By productsContainer = By.cssSelector("div#tbodyid");
 
   public HomePage(WebDriver driver) {
     super(driver);
@@ -75,7 +75,7 @@ public class HomePage extends BasePage {
   /** Selects a product by name from the home page product grid. */
   public void selectProductByName(String productName) {
     TestLogger.testStep("Select product: {}", productName);
-    By productLink = By.xpath("//a[@class='hrefch' and contains(text(), '" + productName + "')]");
+    By productLink = By.xpath("//div//a[text()='" + productName + "']");
     try {
       click(productLink);
       TestLogger.info("Product selected: {}", productName);
@@ -96,7 +96,7 @@ public class HomePage extends BasePage {
   public boolean isProductAvailable(String productName) {
     TestLogger.debug("Checking if product is available: {}", productName);
     try {
-      By productLink = By.xpath("//a[@class='hrefch' and contains(text(), '" + productName + "')]");
+      By productLink = By.xpath("//div//a[text()='" + productName + "']");
       return isElementDisplayed(productLink);
     } catch (Exception e) {
       return false;
