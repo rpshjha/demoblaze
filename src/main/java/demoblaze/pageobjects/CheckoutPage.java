@@ -21,20 +21,16 @@ public class CheckoutPage extends BasePage {
   private By cardInput = By.id("card");
   private By monthInput = By.id("month");
   private By yearInput = By.id("year");
-  private By purchaseButton = By.xpath("//button[onclick='purchaseOrder()']");
+  private By purchaseButton =
+      By.xpath("//button[contains(@class,'btn-primary')][text()='Purchase']");
   private By totalAmountDisplay = By.id("totalm");
 
   // Locators - Purchase Confirmation (SweetAlert)
-  private By confirmationAlert = By.xpath("//div[@class='sweet-alert showSweetAlert visible']");
-  private By confirmationTitle = By.xpath("//div[@class='sweet-alert showSweetAlert visible']//h2");
-  private By confirmationMessage =
-      By.xpath("//div[@class='sweet-alert showSweetAlert visible']//p[@class='lead text-muted']");
-  private By confirmButton =
-      By.xpath(
-          "//div[@class='sweet-alert showSweetAlert visible']//button[@class='confirm btn btn-lg btn-primary']");
-  private By successIcon =
-      By.xpath(
-          "//div[@class='sweet-alert showSweetAlert visible']//div[@class='sa-icon sa-success animate']");
+  private By confirmationAlert = By.cssSelector("div.showSweetAlert.visible");
+  private By confirmationTitle = By.cssSelector("div.showSweetAlert.visible h2");
+  private By confirmationMessage = By.cssSelector("div.showSweetAlert.visible p");
+  private By confirmButton = By.cssSelector("div.showSweetAlert.visible button.confirm");
+  private By successIcon = By.cssSelector("div.showSweetAlert.visible div.sa-placeholder");
 
   public CheckoutPage(WebDriver driver) {
     super(driver);
@@ -207,7 +203,7 @@ public class CheckoutPage extends BasePage {
     TestLogger.info("Checkout form filled successfully");
   }
 
-  /** Completes the purchase and returns confirmation message. */
+  /** Completes the purchase and returns confirmation title and message. */
   public String completePurchase(
       String name, String country, String city, String cardNumber, String month, String year) {
     TestLogger.testStep("Complete purchase");
@@ -225,7 +221,8 @@ public class CheckoutPage extends BasePage {
     TestLogger.info(
         "Purchase confirmation - Title: {}, Message: {}", confirmationTitle, confirmationMessage);
 
-    return confirmationMessage;
+    // Return both title and message for assertion
+    return confirmationTitle + "\n" + confirmationMessage;
   }
 
   /** Completes purchase and verifies confirmation details match input. */

@@ -119,6 +119,9 @@ public class DemoBlazeTest extends BaseTest {
           "Purchase confirmation message should be displayed");
       TestLogger.assertion("Purchase completed successfully: " + checkoutTotal);
 
+      // Step 10.1: Close purchase confirmation modal
+      checkoutPage.clickConfirmButton();
+
       // Step 11: Validate logout
       TestLogger.testStep("Step 11: Logout user");
       logoutUser();

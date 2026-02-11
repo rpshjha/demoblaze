@@ -15,9 +15,7 @@ public class HomePage extends BasePage {
   private By phonesCategoryLink = By.linkText("Phones");
   private By laptopsCategoryLink = By.linkText("Laptops");
   private By monitorsCategoryLink = By.linkText("Monitors");
-  private By homeLink = By.xpath("//a[@href='index.html']");
-  private By pageTitle = By.cssSelector("h1");
-  private By productsContainer = By.cssSelector("div#tbodyid");
+  private By homeLink = By.cssSelector("a[href='index.html']#nava");
 
   public HomePage(WebDriver driver) {
     super(driver);

@@ -14,12 +14,11 @@ import org.openqa.selenium.WebElement;
 public class CartPage extends BasePage {
 
   // Locators
-  private By cartTable = By.xpath("//table[@class='table']");
-  private By cartItems = By.xpath("//table[@class='table']//tr[not(contains(@class, 'header'))]");
-  private By productNameInCart = By.xpath(".//td[2]");
-  private By productPriceInCart = By.xpath(".//td[3]");
-  private By productQuantityInCart = By.xpath(".//td[4]");
-  private By deleteButton = By.xpath(".//a[@class='btn btn-danger']");
+  private By cartTable = By.cssSelector("tbody#tbodyid");
+  private By cartItems = By.cssSelector("#tbodyid > tr");
+  private By productNameInCart = By.xpath("./td[2]");
+  private By productPriceInCart = By.xpath("./td[3]");
+  private By deleteButton = By.xpath("./td[4]/a");
   private By totalPrice = By.id("totalp");
   private By placeOrderButton = By.xpath("//button[contains(text(), 'Place Order')]");
 

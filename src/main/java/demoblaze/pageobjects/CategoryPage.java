@@ -2,10 +2,8 @@ package demoblaze.pageobjects;
 
 import demoblaze.utils.TestLogger;
 import demoblaze.utils.WaitUtils;
-import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 /**
  * CategoryPage - Page Object for product category pages. Handles product listing and selection from
@@ -14,9 +12,7 @@ import org.openqa.selenium.WebElement;
 public class CategoryPage extends BasePage {
 
   // Locators
-  private By productItemsContainer = By.id("tbodyid");
-  private By productLinks = By.xpath("//a[@class='hrefch']");
-  private By categoryTitle = By.id("tbodyid");
+  private final By categoryTitle = By.cssSelector("div#tbodyid");
 
   public CategoryPage(WebDriver driver) {
     super(driver);
@@ -51,17 +47,5 @@ public class CategoryPage extends BasePage {
     } catch (Exception e) {
       return false;
     }
-  }
-
-  /** Gets list of all available products in the category. */
-  public List<WebElement> getAvailableProducts() {
-    TestLogger.debug("Getting list of available products");
-    waitForCategoryPageToLoad();
-    return driver.findElements(productLinks);
-  }
-
-  /** Gets count of products in the category. */
-  public int getProductCount() {
-    return getAvailableProducts().size();
   }
 }

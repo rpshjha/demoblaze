@@ -18,12 +18,12 @@ public class TestData {
   /** Product data for test execution. */
   public static class Products {
     public static final String[] PRODUCTS_TO_ADD = {
-      "Samsung Galaxy s7", "MacBook Air", "Apple Monitor 24"
+      "Samsung galaxy s7", "MacBook air", "Apple monitor 24"
     };
 
-    public static final String SAMSUNG = "Samsung Galaxy s7";
-    public static final String MACBOOK = "MacBook Air";
-    public static final String APPLE_MONITOR = "Apple Monitor 24";
+    public static final String SAMSUNG = "Samsung galaxy s7";
+    public static final String MACBOOK = "MacBook air";
+    public static final String APPLE_MONITOR = "Apple monitor 24";
   }
 
   /** Category data. */
