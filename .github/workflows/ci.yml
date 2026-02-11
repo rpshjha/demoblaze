@@ -45,7 +45,7 @@ jobs:
         if: always()
         run: |
           mvn allure:report
-          npx allure generate target/allure-results --single-file --output=target/allure-report || true
+          npx allure generate --single-file target/allure-results -o target/allure-report --clean
 
       - name: Upload Allure HTML report
         if: always()

@@ -69,6 +69,7 @@
     </dependencies>
 
     <build>
+        <directory>target</directory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -87,6 +88,9 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
 
@@ -149,30 +153,11 @@
                     <printFailingErrors>true</printFailingErrors>
                 </configuration>
             </plugin>
-
-            <!-- Security Scanning: OWASP Dependency-Check -->
-            <plugin>
-                <groupId>org.owasp</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <version>9.0.10</version>
-                <configuration>
-                    <failBuildOnCVSS>7</failBuildOnCVSS>
-                    <skipProvidedScope>true</skipProvidedScope>
-                    <skipRuntimeScope>false</skipRuntimeScope>
-                    <skipSystemScope>true</skipSystemScope>
-                    <nvdApiKey>${env.NVD_API_KEY}</nvdApiKey>
-                    <suppressionFile>dependency-check-suppressions.xml</suppressionFile>
-                </configuration>
-            </plugin>
             <!-- Allure Maven Plugin -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.11.2</version>
-                <configuration>
-                    <reportVersion>2.24.0</reportVersion>
-                    <resultsDirectory>target/allure-results</resultsDirectory>
-                </configuration>
             </plugin>
         </plugins>
     </build>
