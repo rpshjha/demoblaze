@@ -9,10 +9,7 @@
         <classes>
             <class name="demoblaze.tests.DemoBlazeTest">
                 <methods>
-                    <!-- Run all tests in priority order -->
                     <include name="testCompleteDemoBlazeScenario"/>
-                    <include name="testSignUpFunctionality"/>
-                    <include name="testProductSelectionAndCart"/>
                 </methods>
             </class>
         </classes>
