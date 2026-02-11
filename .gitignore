@@ -27,3 +27,4 @@ replay_pid*
 .vscode/
 target/
 *.txt
+allure-results/
