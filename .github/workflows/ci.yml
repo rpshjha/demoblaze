@@ -42,12 +42,11 @@ jobs:
 
 
       - name: Install Allure CLI
-        if: always()
         run: |
-          wget https://github.com/allure-framework/allure2/releases/latest/download/allure-2.24.0.tgz
-          tar -zxvf allure-2.24.0.tgz
-          sudo mv allure-2.24.0 /opt/allure
-          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
+          sudo apt-add-repository ppa:qameta/allure
+          sudo apt-get update
+          sudo apt-get install allure
+          allure --version
 
       - name: Generate Allure Single File Report
         if: always()
