@@ -12,11 +12,10 @@ import org.openqa.selenium.WebDriver;
 public class ProductPage extends BasePage {
 
   // Locators
-  private By productTitle = By.cssSelector("h2");
-  private By productPrice = By.xpath("//h3[@class='price currency']");
+  private By productTitle = By.tagName("h2");
+  private By productPrice = By.xpath("//h3[@class='price-container']");
   private By productDescription = By.xpath("//div[@class='product-details']//p");
-  private By addToCartButton = By.xpath("//a[contains(text(), 'Add to cart')]");
-  private By productImage = By.className("product-image");
+  private By addToCartButton = By.cssSelector("a.btn-success");
 
   public ProductPage(WebDriver driver) {
     super(driver);
@@ -37,8 +36,11 @@ public class ProductPage extends BasePage {
   /** Gets product price. */
   public String getProductPrice() {
     TestLogger.debug("Getting product price");
-    String priceText = getText(productPrice);
-    return priceText;
+    String fullText = getText(productPrice);
+    // Extract price from text like "$360\n*includes tax"
+    // Split and get first part, then trim
+    String priceOnly = fullText.split("\\*")[0].trim();
+    return priceOnly;
   }
 
   /** Gets product price as double value. */
