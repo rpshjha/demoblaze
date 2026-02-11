@@ -14,8 +14,8 @@ import org.openqa.selenium.WebElement;
 public class CategoryPage extends BasePage {
 
   // Locators
-  private By productItemsContainer = By.className("row");
-  private By productLinks = By.xpath("//a[@href='#']//h4");
+  private By productItemsContainer = By.id("tbodyid");
+  private By productLinks = By.xpath("//a[@class='hrefch']");
   private By categoryTitle = By.xpath("//h4[contains(text(), 'Products')]");
 
   public CategoryPage(WebDriver driver) {
@@ -33,7 +33,8 @@ public class CategoryPage extends BasePage {
     TestLogger.testStep("Select product: " + productName);
 
     try {
-      By productLocator = By.xpath("//a[contains(text(), '" + productName + "')]");
+      By productLocator =
+          By.xpath("//a[@class='hrefch' and contains(text(), '" + productName + "')]");
       click(productLocator);
       TestLogger.info("Product selected: {}", productName);
     } catch (Exception e) {
@@ -46,7 +47,8 @@ public class CategoryPage extends BasePage {
   public boolean isProductAvailable(String productName) {
     TestLogger.debug("Checking if product is available: {}", productName);
     try {
-      By productLocator = By.xpath("//a[contains(text(), '" + productName + "')]");
+      By productLocator =
+          By.xpath("//a[@class='hrefch' and contains(text(), '" + productName + "')]");
       return isElementDisplayed(productLocator);
     } catch (Exception e) {
       return false;

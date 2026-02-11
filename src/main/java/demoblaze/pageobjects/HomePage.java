@@ -15,7 +15,9 @@ public class HomePage extends BasePage {
   private By phonesCategoryLink = By.linkText("Phones");
   private By laptopsCategoryLink = By.linkText("Laptops");
   private By monitorsCategoryLink = By.linkText("Monitors");
+  private By homeLink = By.xpath("//a[@href='index.html']");
   private By pageTitle = By.cssSelector("h1");
+  private By productsContainer = By.id("tbodyid");
 
   public HomePage(WebDriver driver) {
     super(driver);
@@ -67,6 +69,37 @@ public class HomePage extends BasePage {
         break;
       default:
         throw new IllegalArgumentException("Unknown category: " + categoryName);
+    }
+  }
+
+  /** Selects a product by name from the home page product grid. */
+  public void selectProductByName(String productName) {
+    TestLogger.testStep("Select product: {}", productName);
+    By productLink = By.xpath("//a[@class='hrefch' and contains(text(), '" + productName + "')]");
+    try {
+      click(productLink);
+      TestLogger.info("Product selected: {}", productName);
+    } catch (Exception e) {
+      TestLogger.error("Product not found: {}", e);
+      throw e;
+    }
+  }
+
+  /** Navigates back to home page. */
+  public void navigateToHome() {
+    TestLogger.testStep("Navigate to Home");
+    click(homeLink);
+    TestLogger.info("Navigated to Home");
+  }
+
+  /** Checks if product is available in the product grid. */
+  public boolean isProductAvailable(String productName) {
+    TestLogger.debug("Checking if product is available: {}", productName);
+    try {
+      By productLink = By.xpath("//a[@class='hrefch' and contains(text(), '" + productName + "')]");
+      return isElementDisplayed(productLink);
+    } catch (Exception e) {
+      return false;
     }
   }
 }
